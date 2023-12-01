@@ -57,13 +57,10 @@ public class TennisGame6 : ITennisGame
 
         var leadingPlayer = difference > 0 ? player1Name : player2Name;
 
-        return difference switch
-        {
-            1 => $"Advantage {leadingPlayer}",
-            -1 => $"Advantage {leadingPlayer}",
-            >= 2 => $"Win for {leadingPlayer}",
-            _ => $"Win for {leadingPlayer}",
-        };
+        if (difference is 1 or -1)
+            return $"Advantage {leadingPlayer}";
+        else
+            return $"Win for {leadingPlayer}";
     }
 
     private string ComputeTieScore()
