@@ -41,14 +41,7 @@ public class TennisGame6 : ITennisGame
         string regularScore;
 
         var score1 = GetScoreName(player1Score);
-
-        var score2 = player2Score switch
-        {
-            0 => "Love",
-            1 => "Fifteen",
-            2 => "Thirty",
-            _ => "Forty"
-        };
+        var score2 = GetScoreName(player2Score);
 
         regularScore = $"{score1}-{score2}";
 
