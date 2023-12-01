@@ -65,8 +65,8 @@ public class TennisGame6 : ITennisGame
 
     private string ComputeTieScore()
     {
-        string result;
         string tieScore;
+
         switch (player1Score)
         {
             case 0:
@@ -83,8 +83,6 @@ public class TennisGame6 : ITennisGame
                 break;
         }
 
-        result = tieScore;
-
-        return result;
+        return tieScore;
     }
 }
