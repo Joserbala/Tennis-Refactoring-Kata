@@ -4,8 +4,8 @@ public class TennisGame6 : ITennisGame
 {
     private int player1Score;
     private int player2Score;
-    private string player1Name;
-    private string player2Name;
+    private readonly string player1Name;
+    private readonly string player2Name;
 
     public TennisGame6(string player1Name, string player2Name)
     {
