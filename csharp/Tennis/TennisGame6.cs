@@ -53,25 +53,13 @@ public class TennisGame6 : ITennisGame
 
     private string ComputeEndGameScore()
     {
-        string endGameScore;
-
-        switch (player1Score - player2Score)
+        return (player1Score - player2Score) switch
         {
-            case 1:
-                endGameScore = $"Advantage {player1Name}";
-                break;
-            case -1:
-                endGameScore = $"Advantage {player2Name}";
-                break;
-            case >= 2:
-                endGameScore = $"Win for {player1Name}";
-                break;
-            default:
-                endGameScore = $"Win for {player2Name}";
-                break;
-        }
-
-        return endGameScore;
+            1 => $"Advantage {player1Name}",
+            -1 => $"Advantage {player2Name}",
+            >= 2 => $"Win for {player1Name}",
+            _ => $"Win for {player2Name}",
+        };
     }
 
     private string ComputeTieScore()
