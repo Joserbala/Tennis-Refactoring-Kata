@@ -43,7 +43,7 @@ public class TennisGame6 : ITennisGame
         return $"{score1}-{score2}";
     }
 
-    private string GetScoreName(int score) => score switch
+    private static string GetScoreName(int score) => score switch
     {
         0 => "Love",
         1 => "Fifteen",
