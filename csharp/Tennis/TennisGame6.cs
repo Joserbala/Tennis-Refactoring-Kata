@@ -53,7 +53,9 @@ public class TennisGame6 : ITennisGame
 
     private string ComputeEndGameScore()
     {
-        return (player1Score - player2Score) switch
+        var difference = player1Score - player2Score;
+
+        return difference switch
         {
             1 => $"Advantage {player1Name}",
             -1 => $"Advantage {player2Name}",
