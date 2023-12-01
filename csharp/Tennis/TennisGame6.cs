@@ -53,7 +53,6 @@ public class TennisGame6 : ITennisGame
 
     private string ComputeEndGameScore()
     {
-        string result;
         string endGameScore;
 
         switch (player1Score - player2Score)
@@ -72,9 +71,7 @@ public class TennisGame6 : ITennisGame
                 break;
         }
 
-        result = endGameScore;
-
-        return result;
+        return endGameScore;
     }
 
     private string ComputeTieScore()
