@@ -38,30 +38,27 @@ public class TennisGame6 : ITennisGame
     private string ComputeRegularScore()
     {
         string result;
+        string regularScore;
+
+        var score1 = player1Score switch
         {
-            // regular score
-            string regularScore;
+            0 => "Love",
+            1 => "Fifteen",
+            2 => "Thirty",
+            _ => "Forty"
+        };
 
-            var score1 = player1Score switch
-            {
-                0 => "Love",
-                1 => "Fifteen",
-                2 => "Thirty",
-                _ => "Forty"
-            };
+        var score2 = player2Score switch
+        {
+            0 => "Love",
+            1 => "Fifteen",
+            2 => "Thirty",
+            _ => "Forty"
+        };
 
-            var score2 = player2Score switch
-            {
-                0 => "Love",
-                1 => "Fifteen",
-                2 => "Thirty",
-                _ => "Forty"
-            };
+        regularScore = $"{score1}-{score2}";
 
-            regularScore = $"{score1}-{score2}";
-
-            result = regularScore;
-        }
+        result = regularScore;
 
         return result;
     }
