@@ -55,12 +55,14 @@ public class TennisGame6 : ITennisGame
     {
         var difference = player1Score - player2Score;
 
+        var leadingPlayer = difference > 0 ? player1Name : player2Name;
+
         return difference switch
         {
-            1 => $"Advantage {player1Name}",
-            -1 => $"Advantage {player2Name}",
-            >= 2 => $"Win for {player1Name}",
-            _ => $"Win for {player2Name}",
+            1 => $"Advantage {leadingPlayer}",
+            -1 => $"Advantage {leadingPlayer}",
+            >= 2 => $"Win for {leadingPlayer}",
+            _ => $"Win for {leadingPlayer}",
         };
     }
 
