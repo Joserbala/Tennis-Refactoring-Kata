@@ -26,51 +26,18 @@ public class TennisGame6 : ITennisGame
         string result;
 
         if (player1Score == player2Score)
-        {
-            // tie score
-            string tieScore;
-            switch (player1Score)
-            {
-                case 0:
-                    tieScore = "Love-All";
-                    break;
-                case 1:
-                    tieScore = "Fifteen-All";
-                    break;
-                case 2:
-                    tieScore = "Thirty-All";
-                    break;
-                default:
-                    tieScore = "Deuce";
-                    break;
-            }
-
-            result = tieScore;
-        }
+            result = ComputeTieScore();
         else if (player1Score >= 4 || player2Score >= 4)
-        {
-            // end-game score
-            string endGameScore;
-
-            switch (player1Score - player2Score)
-            {
-                case 1:
-                    endGameScore = $"Advantage {player1Name}";
-                    break;
-                case -1:
-                    endGameScore = $"Advantage {player2Name}";
-                    break;
-                case >= 2:
-                    endGameScore = $"Win for {player1Name}";
-                    break;
-                default:
-                    endGameScore = $"Win for {player2Name}";
-                    break;
-            }
-
-            result = endGameScore;
-        }
+            result = ComputeEndGameScore();
         else
+            result = ComputeRegularScore();
+
+        return result;
+    }
+
+    private string ComputeRegularScore()
+    {
+        string result;
         {
             // regular score
             string regularScore;
@@ -94,6 +61,63 @@ public class TennisGame6 : ITennisGame
             regularScore = $"{score1}-{score2}";
 
             result = regularScore;
+        }
+
+        return result;
+    }
+
+    private string ComputeEndGameScore()
+    {
+        string result;
+        {
+            // end-game score
+            string endGameScore;
+
+            switch (player1Score - player2Score)
+            {
+                case 1:
+                    endGameScore = $"Advantage {player1Name}";
+                    break;
+                case -1:
+                    endGameScore = $"Advantage {player2Name}";
+                    break;
+                case >= 2:
+                    endGameScore = $"Win for {player1Name}";
+                    break;
+                default:
+                    endGameScore = $"Win for {player2Name}";
+                    break;
+            }
+
+            result = endGameScore;
+        }
+
+        return result;
+    }
+
+    private string ComputeTieScore()
+    {
+        string result;
+        {
+            // tie score
+            string tieScore;
+            switch (player1Score)
+            {
+                case 0:
+                    tieScore = "Love-All";
+                    break;
+                case 1:
+                    tieScore = "Fifteen-All";
+                    break;
+                case 2:
+                    tieScore = "Thirty-All";
+                    break;
+                default:
+                    tieScore = "Deuce";
+                    break;
+            }
+
+            result = tieScore;
         }
 
         return result;
