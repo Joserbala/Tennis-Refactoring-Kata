@@ -63,26 +63,11 @@ public class TennisGame6 : ITennisGame
             return $"Win for {leadingPlayer}";
     }
 
-    private string ComputeTieScore()
+    private string ComputeTieScore() => player1Score switch
     {
-        string tieScore;
-
-        switch (player1Score)
-        {
-            case 0:
-                tieScore = "Love-All";
-                break;
-            case 1:
-                tieScore = "Fifteen-All";
-                break;
-            case 2:
-                tieScore = "Thirty-All";
-                break;
-            default:
-                tieScore = "Deuce";
-                break;
-        }
-
-        return tieScore;
-    }
+        0 => "Love-All",
+        1 => "Fifteen-All",
+        2 => "Thirty-All",
+        _ => "Deuce",
+    };
 }
