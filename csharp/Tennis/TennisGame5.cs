@@ -71,13 +71,13 @@ namespace Tennis
 
         private string Winner()
         {
-            if (player1Score >= MaxPoints && player1Score - player2Score >= 2)
-                return player1Name;
-            else if (player2Score >= MaxPoints && player2Score - player1Score >= 2)
-                return player2Name;
-            else
+            if (ScoreDifference() < 2)
                 return null;
+
+            return player1Score > player2Score ? player1Name : player2Name;
         }
+
+        private int ScoreDifference() => Math.Abs(player1Score - player2Score);
 
         private bool IsDeuce()
         {
@@ -86,7 +86,7 @@ namespace Tennis
 
         private bool IsGameOver()
         {
-            return !string.IsNullOrEmpty(Winner());
+            return ScoreDifference() >= 2 && (player1Score >= MaxPoints || player2Score >= MaxPoints);
         }
     }
 }
