@@ -69,10 +69,7 @@ namespace Tennis
 
         private string Winner()
         {
-            if (ScoreDifference() < 2)
-                return null;
-
-            return player1Score > player2Score ? player1Name : player2Name;
+            return LeadingPlayer();
         }
 
         private int ScoreDifference() => Math.Abs(player1Score - player2Score);
