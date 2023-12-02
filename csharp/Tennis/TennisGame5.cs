@@ -64,12 +64,7 @@ namespace Tennis
 
         private string LeadingPlayer()
         {
-            if (player1Score >= MaxPoints && player1Score - player2Score == 1)
-                return player1Name;
-            else if (player2Score >= MaxPoints && player2Score - player1Score == 1)
-                return player2Name;
-            else
-                return null;
+            return player1Score > player2Score ? player1Name : player2Name;
         }
 
         private string Winner()
