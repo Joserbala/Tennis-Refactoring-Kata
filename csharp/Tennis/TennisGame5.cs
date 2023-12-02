@@ -42,6 +42,9 @@ namespace Tennis
             else if(HasWon(p2, p1))
                 return $"Win for {player2Name}";
 
+            if (IsDeuce(p1, p2))
+                return "Deuce";
+
             return (p1, p2) switch
             {
                 (0, 0) => "Love-All",
@@ -59,12 +62,15 @@ namespace Tennis
                 (3, 0) => "Forty-Love",
                 (3, 1) => "Forty-Fifteen",
                 (3, 2) => "Forty-Thirty",
-                (3, 3) => "Deuce",
                 (3, 4) => $"Advantage {player2Name}",
                 (4, 3) => $"Advantage {player1Name}",
-                (4, 4) => "Deuce",
                 _ => throw new ArgumentException("Invalid score.")
             };
+        }
+
+        private bool IsDeuce(int p1, int p2)
+        {
+            return p1 >= 3 && p1 == p2;
         }
 
         private bool HasWon(int p1, int p2)
