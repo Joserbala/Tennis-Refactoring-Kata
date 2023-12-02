@@ -43,7 +43,10 @@ namespace Tennis
             return $"{ScoreName(player1Score)}-{ScoreName(player2Score)}";
         }
 
-        private bool IsAdvantage() => !string.IsNullOrEmpty(LeadingPlayer());
+        private bool IsAdvantage()
+        {
+            return ScoreDifference() == 1 && (player1Score >= MaxPoints || player2Score >= MaxPoints);
+        }
 
         private string ScoreName(int score)
         {
