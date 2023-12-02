@@ -4,6 +4,7 @@ namespace Tennis
 {
     public class TennisGame5 : ITennisGame
     {
+        private const int MaxPoints = 4;
         private int player1Score;
         private int player2Score;
         private string player1Name;
@@ -30,7 +31,7 @@ namespace Tennis
             int p1 = player1Score;
             int p2 = player2Score;
 
-            while (p1 > 4 || p2 > 4)
+            while (p1 > MaxPoints || p2 > MaxPoints)
             {
                 p1--;
                 p2--;
