@@ -28,10 +28,8 @@ namespace Tennis
 
         public string GetScore()
         {
-            if (IsGameOver(player1Score, player2Score))
-                return $"Win for {player1Name}";
-            else if (IsGameOver(player2Score, player1Score))
-                return $"Win for {player2Name}";
+            if (IsGameOver())
+                return $"Win for {Winner()}";
 
             if (IsDeuce())
                 return "Deuce";
@@ -71,14 +69,24 @@ namespace Tennis
                 return null;
         }
 
+        private string Winner()
+        {
+            if (player1Score >= MaxPoints && player1Score - player2Score >= 2)
+                return player1Name;
+            else if (player2Score >= MaxPoints && player2Score - player1Score >= 2)
+                return player2Name;
+            else
+                return null;
+        }
+
         private bool IsDeuce()
         {
             return player1Score >= MaxPoints - 1 && player1Score == player2Score;
         }
 
-        private bool IsGameOver(int p1, int p2)
+        private bool IsGameOver()
         {
-            return p1 >= MaxPoints && p1 - p2 >= 2;
+            return !string.IsNullOrEmpty(Winner());
         }
     }
 }
