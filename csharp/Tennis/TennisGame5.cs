@@ -40,19 +40,19 @@ namespace Tennis
             if (!string.IsNullOrEmpty(leadingPlayer))
                 return $"Advantage {leadingPlayer}";
 
+            if (IsTie())
+                return $"{ScoreName(player1Score)}-All";
+
             return (player1Score, player2Score) switch
             {
-                (0, 0) => "Love-All",
                 (0, 1) => "Love-Fifteen",
                 (0, 2) => "Love-Thirty",
                 (0, 3) => "Love-Forty",
                 (1, 0) => "Fifteen-Love",
-                (1, 1) => "Fifteen-All",
                 (1, 2) => "Fifteen-Thirty",
                 (1, 3) => "Fifteen-Forty",
                 (2, 0) => "Thirty-Love",
                 (2, 1) => "Thirty-Fifteen",
-                (2, 2) => "Thirty-All",
                 (2, 3) => "Thirty-Forty",
                 (3, 0) => "Forty-Love",
                 (3, 1) => "Forty-Fifteen",
@@ -60,6 +60,20 @@ namespace Tennis
                 _ => throw new ArgumentException("Invalid score.")
             };
         }
+
+        private string ScoreName(int score)
+        {
+            return score switch
+            {
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty",
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+        }
+
+        private bool IsTie() => player1Score == player2Score;
 
         private string GetPlayerAdvantage()
         {
