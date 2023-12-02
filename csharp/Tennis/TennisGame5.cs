@@ -27,7 +27,7 @@ namespace Tennis
 
         public string GetScore()
         {
-            return new ScoreRenderer(player1Name, player2Name, player1Score, player2Score).Render();
+            return new ScoreRenderer(player1Name, player2Name).Render(player1Score, player2Score);
         }
     }
 
@@ -36,37 +36,33 @@ namespace Tennis
         private const int MaxPoints = 4;
         private string player1Name;
         private string player2Name;
-        private readonly int player1Score;
-        private readonly int player2Score;
 
-        public ScoreRenderer(string player1Name, string player2Name, int player1Score, int player2Score)
+        public ScoreRenderer(string player1Name, string player2Name)
         {
             this.player1Name = player1Name;
             this.player2Name = player2Name;
-            this.player1Score = player1Score;
-            this.player2Score = player2Score;
         }
 
-        public string Render()
+        public string Render(int player1Score, int player2Score)
         {
-            if (IsGameOver())
-                return $"Win for {LeadingPlayer()}";
+            if (IsGameOver(player1Score, player2Score))
+                return $"Win for {LeadingPlayer(player1Score, player2Score)}";
 
-            if (IsDeuce())
+            if (IsDeuce(player1Score, player2Score))
                 return "Deuce";
 
-            if (IsAdvantage())
-                return $"Advantage {LeadingPlayer()}";
+            if (IsAdvantage(player1Score, player2Score))
+                return $"Advantage {LeadingPlayer(player1Score, player2Score)}";
 
-            if (IsTie())
+            if (IsTie(player1Score, player2Score))
                 return $"{ScoreName(player1Score)}-All";
 
             return $"{ScoreName(player1Score)}-{ScoreName(player2Score)}";
         }
 
-        private bool IsAdvantage()
+        private bool IsAdvantage(int player1Score, int player2Score)
         {
-            return ScoreDifference() == 1 && (player1Score >= MaxPoints || player2Score >= MaxPoints);
+            return ScoreDifference(player1Score, player2Score) == 1 && (player1Score >= MaxPoints || player2Score >= MaxPoints);
         }
 
         private string ScoreName(int score)
@@ -81,23 +77,23 @@ namespace Tennis
             };
         }
 
-        private bool IsTie() => player1Score == player2Score;
+        private bool IsTie(int player1Score, int player2Score) => player1Score == player2Score;
 
-        private string LeadingPlayer()
+        private string LeadingPlayer(int player1Score, int player2Score)
         {
             return player1Score > player2Score ? player1Name : player2Name;
         }
 
-        private int ScoreDifference() => Math.Abs(player1Score - player2Score);
+        private int ScoreDifference(int player1Score, int player2Score) => Math.Abs(player1Score - player2Score);
 
-        private bool IsDeuce()
+        private bool IsDeuce(int player1Score, int player2Score)
         {
-            return IsTie() && player1Score >= MaxPoints - 1;
+            return IsTie(player1Score, player2Score) && player1Score >= MaxPoints - 1;
         }
 
-        private bool IsGameOver()
+        private bool IsGameOver(int player1Score, int player2Score)
         {
-            return ScoreDifference() >= 2 && (player1Score >= MaxPoints || player2Score >= MaxPoints);
+            return ScoreDifference(player1Score, player2Score) >= 2 && (player1Score >= MaxPoints || player2Score >= MaxPoints);
         }
     }
 }
