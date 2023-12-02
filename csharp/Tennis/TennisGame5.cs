@@ -28,9 +28,9 @@ namespace Tennis
 
         public string GetScore()
         {
-            if (HasWon(player1Score, player2Score))
+            if (IsGameOver(player1Score, player2Score))
                 return $"Win for {player1Name}";
-            else if (HasWon(player2Score, player1Score))
+            else if (IsGameOver(player2Score, player1Score))
                 return $"Win for {player2Name}";
 
             if (IsDeuce())
@@ -76,7 +76,7 @@ namespace Tennis
             return player1Score >= 3 && player1Score == player2Score;
         }
 
-        private bool HasWon(int p1, int p2)
+        private bool IsGameOver(int p1, int p2)
         {
             return p1 >= MaxPoints && p1 - p2 >= 2;
         }
