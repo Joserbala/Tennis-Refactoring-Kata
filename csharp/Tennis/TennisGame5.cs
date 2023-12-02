@@ -37,7 +37,7 @@ namespace Tennis
                 return "Deuce";
 
             if (IsAdvantage())
-                return $"Advantage {GetPlayerAdvantage()}";
+                return $"Advantage {LeadingPlayer()}";
 
             if (IsTie())
                 return $"{ScoreName(player1Score)}-All";
@@ -45,7 +45,7 @@ namespace Tennis
             return $"{ScoreName(player1Score)}-{ScoreName(player2Score)}";
         }
 
-        private bool IsAdvantage() => !string.IsNullOrEmpty(GetPlayerAdvantage());
+        private bool IsAdvantage() => !string.IsNullOrEmpty(LeadingPlayer());
 
         private string ScoreName(int score)
         {
@@ -61,7 +61,7 @@ namespace Tennis
 
         private bool IsTie() => player1Score == player2Score;
 
-        private string GetPlayerAdvantage()
+        private string LeadingPlayer()
         {
             if (player1Score > 3 && player1Score - player2Score == 1)
                 return player1Name;
