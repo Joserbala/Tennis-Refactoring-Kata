@@ -36,9 +36,8 @@ namespace Tennis
             if (IsDeuce())
                 return "Deuce";
 
-            string leadingPlayer = GetPlayerAdvantage();
-            if (!string.IsNullOrEmpty(leadingPlayer))
-                return $"Advantage {leadingPlayer}";
+            if (!string.IsNullOrEmpty(GetPlayerAdvantage()))
+                return $"Advantage {GetPlayerAdvantage()}";
 
             if (IsTie())
                 return $"{ScoreName(player1Score)}-All";
