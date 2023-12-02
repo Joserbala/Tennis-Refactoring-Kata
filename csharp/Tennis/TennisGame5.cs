@@ -81,7 +81,7 @@ namespace Tennis
 
         private bool IsDeuce()
         {
-            return player1Score >= MaxPoints - 1 && player1Score == player2Score;
+            return IsTie() && player1Score >= MaxPoints - 1;
         }
 
         private bool IsGameOver()
