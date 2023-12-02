@@ -8,11 +8,13 @@ namespace Tennis
         private int player2Score;
         private string player1Name;
         private string player2Name;
+        private ScoreRenderer scoreRenderer;
 
         public TennisGame5(string player1Name, string player2Name)
         {
             this.player1Name = player1Name;
             this.player2Name = player2Name;
+            scoreRenderer = new ScoreRenderer(player1Name, player2Name);
         }
 
         public void WonPoint(string playerName)
@@ -27,7 +29,7 @@ namespace Tennis
 
         public string GetScore()
         {
-            return new ScoreRenderer(player1Name, player2Name).Render(player1Score, player2Score);
+            return scoreRenderer.Render(player1Score, player2Score);
         }
     }
 
