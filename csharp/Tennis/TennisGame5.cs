@@ -63,9 +63,9 @@ namespace Tennis
 
         private string LeadingPlayer()
         {
-            if (player1Score > 3 && player1Score - player2Score == 1)
+            if (player1Score >= MaxPoints && player1Score - player2Score == 1)
                 return player1Name;
-            else if (player2Score > 3 && player2Score - player1Score == 1)
+            else if (player2Score >= MaxPoints && player2Score - player1Score == 1)
                 return player2Name;
             else
                 return null;
@@ -73,7 +73,7 @@ namespace Tennis
 
         private bool IsDeuce()
         {
-            return player1Score >= 3 && player1Score == player2Score;
+            return player1Score >= MaxPoints - 1 && player1Score == player2Score;
         }
 
         private bool IsGameOver(int p1, int p2)
