@@ -37,9 +37,9 @@ namespace Tennis
                 p2--;
             }
 
-            if (HasWon(p1, p2))
+            if (HasWon(player1Score, player2Score))
                 return $"Win for {player1Name}";
-            else if(HasWon(p2, p1))
+            else if(HasWon(player2Score, player1Score))
                 return $"Win for {player2Name}";
 
             if (IsDeuce(p1, p2))
@@ -75,7 +75,7 @@ namespace Tennis
 
         private bool HasWon(int p1, int p2)
         {
-            return p1 == 4 && p2 < 3;
+            return p1 >= MaxPoints && p1 - p2 >= 2;
         }
     }
 }
