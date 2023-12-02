@@ -43,22 +43,7 @@ namespace Tennis
             if (IsTie())
                 return $"{ScoreName(player1Score)}-All";
 
-            return (player1Score, player2Score) switch
-            {
-                (0, 1) => "Love-Fifteen",
-                (0, 2) => "Love-Thirty",
-                (0, 3) => "Love-Forty",
-                (1, 0) => "Fifteen-Love",
-                (1, 2) => "Fifteen-Thirty",
-                (1, 3) => "Fifteen-Forty",
-                (2, 0) => "Thirty-Love",
-                (2, 1) => "Thirty-Fifteen",
-                (2, 3) => "Thirty-Forty",
-                (3, 0) => "Forty-Love",
-                (3, 1) => "Forty-Fifteen",
-                (3, 2) => "Forty-Thirty",
-                _ => throw new ArgumentException("Invalid score.")
-            };
+            return $"{ScoreName(player1Score)}-{ScoreName(player2Score)}";
         }
 
         private string ScoreName(int score)
