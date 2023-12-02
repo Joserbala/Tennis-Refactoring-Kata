@@ -29,7 +29,7 @@ namespace Tennis
         public string GetScore()
         {
             if (IsGameOver())
-                return $"Win for {Winner()}";
+                return $"Win for {LeadingPlayer()}";
 
             if (IsDeuce())
                 return "Deuce";
@@ -65,11 +65,6 @@ namespace Tennis
         private string LeadingPlayer()
         {
             return player1Score > player2Score ? player1Name : player2Name;
-        }
-
-        private string Winner()
-        {
-            return LeadingPlayer();
         }
 
         private int ScoreDifference() => Math.Abs(player1Score - player2Score);
