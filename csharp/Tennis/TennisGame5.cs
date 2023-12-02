@@ -42,7 +42,7 @@ namespace Tennis
             else if(HasWon(player2Score, player1Score))
                 return $"Win for {player2Name}";
 
-            if (IsDeuce(p1, p2))
+            if (IsDeuce())
                 return "Deuce";
 
             return (p1, p2) switch
@@ -68,9 +68,9 @@ namespace Tennis
             };
         }
 
-        private bool IsDeuce(int p1, int p2)
+        private bool IsDeuce()
         {
-            return p1 >= 3 && p1 == p2;
+            return player1Score >= 3 && player1Score == player2Score;
         }
 
         private bool HasWon(int p1, int p2)
