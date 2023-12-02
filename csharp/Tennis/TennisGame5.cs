@@ -37,6 +37,9 @@ namespace Tennis
                 p2--;
             }
 
+            if (HasWon(p1, p2))
+                return $"Win for {player1Name}";
+
             return (p1, p2) switch
             {
                 (0, 0) => "Love-All",
@@ -66,6 +69,11 @@ namespace Tennis
                 (4, 4) => "Deuce",
                 _ => throw new ArgumentException("Invalid score.")
             };
+        }
+
+        private bool HasWon(int p1, int p2)
+        {
+            return p1 == 4 && p2 < 3;
         }
     }
 }
