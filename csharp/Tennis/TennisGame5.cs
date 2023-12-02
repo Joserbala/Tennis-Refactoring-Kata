@@ -28,15 +28,6 @@ namespace Tennis
 
         public string GetScore()
         {
-            int p1 = player1Score;
-            int p2 = player2Score;
-
-            while (p1 > MaxPoints || p2 > MaxPoints)
-            {
-                p1--;
-                p2--;
-            }
-
             if (HasWon(player1Score, player2Score))
                 return $"Win for {player1Name}";
             else if(HasWon(player2Score, player1Score))
@@ -49,7 +40,7 @@ namespace Tennis
             if (!string.IsNullOrEmpty(leadingPlayer))
                 return $"Advantage {leadingPlayer}";
 
-            return (p1, p2) switch
+            return (player1Score, player2Score) switch
             {
                 (0, 0) => "Love-All",
                 (0, 1) => "Love-Fifteen",
