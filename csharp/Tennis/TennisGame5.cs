@@ -30,13 +30,13 @@ namespace Tennis
         {
             if (HasWon(player1Score, player2Score))
                 return $"Win for {player1Name}";
-            else if(HasWon(player2Score, player1Score))
+            else if (HasWon(player2Score, player1Score))
                 return $"Win for {player2Name}";
 
             if (IsDeuce())
                 return "Deuce";
 
-            if (!string.IsNullOrEmpty(GetPlayerAdvantage()))
+            if (IsAdvantage())
                 return $"Advantage {GetPlayerAdvantage()}";
 
             if (IsTie())
@@ -44,6 +44,8 @@ namespace Tennis
 
             return $"{ScoreName(player1Score)}-{ScoreName(player2Score)}";
         }
+
+        private bool IsAdvantage() => !string.IsNullOrEmpty(GetPlayerAdvantage());
 
         private string ScoreName(int score)
         {
