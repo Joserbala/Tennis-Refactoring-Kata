@@ -4,7 +4,6 @@ namespace Tennis
 {
     public class TennisGame5 : ITennisGame
     {
-        private const int MaxPoints = 4;
         private int player1Score;
         private int player2Score;
         private string player1Name;
@@ -27,6 +26,28 @@ namespace Tennis
         }
 
         public string GetScore()
+        {
+            return new ScoreRenderer(player1Name, player2Name, player1Score, player2Score).Render();
+        }
+    }
+
+    internal class ScoreRenderer
+    {
+        private const int MaxPoints = 4;
+        private string player1Name;
+        private string player2Name;
+        private readonly int player1Score;
+        private readonly int player2Score;
+
+        public ScoreRenderer(string player1Name, string player2Name, int player1Score, int player2Score)
+        {
+            this.player1Name = player1Name;
+            this.player2Name = player2Name;
+            this.player1Score = player1Score;
+            this.player2Score = player2Score;
+        }
+
+        public string Render()
         {
             if (IsGameOver())
                 return $"Win for {LeadingPlayer()}";
